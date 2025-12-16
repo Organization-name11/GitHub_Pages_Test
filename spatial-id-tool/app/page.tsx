@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Space } from './lib/src/index';
+import { Space } from '../lib/src/index';
 
 export default function HomePage() {
   const [lat, setLat] = useState('');
@@ -12,14 +12,15 @@ export default function HomePage() {
   const [result, setResult] = useState('');
 
   const handleCalculate = () => {
-    const space = new Space();
-    const tile = space.fromLatLngAltZoom(
-      parseFloat(lat),
-      parseFloat(lng),
-      parseFloat(alt),
+    const space = new Space(
+      {
+        lat: parseFloat(lat),
+        lng: parseFloat(lng),
+        alt: parseFloat(alt),
+      },
       parseInt(zoom)
     );
-    setResult(JSON.stringify(tile));
+    setResult(JSON.stringify(space));
   };
 
   return (
