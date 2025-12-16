@@ -1,0 +1,3 @@
+[submodule "lib/ouranos-gex-lib-for-javascript"]
+	path = lib/ouranos-gex-lib-for-javascript
+	url = https://github.com/ouranos-gex/ouranos-gex-lib-for-JavaScript.git
