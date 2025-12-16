@@ -18,8 +18,8 @@ export default function HomePage() {
         parseInt(zoom)
       );
       const output = `
-        TileHash: ${space.toTileHash ? space.toTileHash() : 'N/A'}
-        ZFXY: ${JSON.stringify(space.toZFXY ? space.toZFXY() : 'N/A')}
+        TileHash: ${space.tilehash}
+        ZFXY: ${JSON.stringify(space.zfxy)}
       `;
       setResult(output);
       console.log(space);
