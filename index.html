@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Spatial Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,19 +21,70 @@
         .section {
             margin: 20px 0;
         }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #0078d7;
+            color: #fff;
+           -color: #005fa3;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
+    <h1>Spatial Calculator</h1>
     
     <div class="section">
-        <h2>About</h2>
-        <p>こちらにサイトの説明を記載してください。</p>
+        <h2>入力フォーム</h2>
+        <label for="lat">緯度:</label>
+        <input type="number" id="lat" step="0.000001" placeholder="例: 35.6895">
+        
+        <label for="lng">経度:</label>
+        <input type="number" id="lng" step="0.000001" placeholder="例: 139.6917">
+        
+        <label for="alt">高さ (m):</label>
+        <input type="number" id="alt" step="0.1" placeholder="例: 50">
+        
+        <label for="zoom">ズームレベル:</label>
+        <input type="number" id="zoom" min="0" max="32" placeholder="例: 25">
+        
+        <button onclick="calculate()">計算する</button>
     </div>
 
-    <div class="section">
-        <h2>Contact</h2>
-        <p>連絡先情報があれば記載してください。</p>
+    <div id="result">
+        <h3>計算結果:</h3>
+        <p id="output">ここに結果が表示されます。</p>
     </div>
+
+    <script>
+        function calculate() {
+            const lat = parseFloat(document.getElementById('lat').value);
+            const lng = parseFloat(document.getElementById('lng').value);
+            const alt = parseFloat(document.getElementById('alt').value);
+            const zoom = parseInt(document.getElementById('zoom').value);
+
+            if (isNaN(lat) || isNaN(lng) || isNaN(alt) || isNaN(zoom)) {
+                document.getElementById('output').innerText = "すべての値を入力してください。";
+                return;
+            }
+
+            // 仮の計算ロジック（実際はZFXYやタイル計算を組み込む）
+            const tileX = Math.floor((lng + 180) / 360 * Math.pow(2, zoom));
+            const tileY = Math.floor((1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom));
+
+            document.getElementById('output').innerText =
+                `入力値: 緯度=${lat}, 経度=${lng}, 高さ=${alt}, ズーム=${zoom}\n` +
+                `計算結果: タイル座標 X=${tileX}, Y=${tileY}`;
+        </script>
 </body>
 </html>
