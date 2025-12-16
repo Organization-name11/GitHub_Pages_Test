@@ -1,3 +1,6 @@
 [submodule "lib/ouranos-gex-lib-for-javascript"]
 	path = lib/ouranos-gex-lib-for-javascript
 	url = https://github.com/ouranos-gex/ouranos-gex-lib-for-JavaScript.git
+[submodule "spatial-id-tool/lib/ouranos-gex-lib-for-javascript"]
+	path = spatial-id-tool/lib/ouranos-gex-lib-for-javascript
+	url = https://github.com/ouranos-gex/ouranos-gex-lib-for-JavaScript.git
